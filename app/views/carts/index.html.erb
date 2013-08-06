@@ -7,11 +7,9 @@
     <th></th>
   </tr>
 
-<% @carts.each_with_index do |cart,m| %>
-  <div id="Goods_in_cart">
-  Cart <%=m%> has <%= cart.line_items.count%> goods
-  </div>
+<% @carts.each do |cart| %>
   <tr>
+    <td>Cart <%=cart.id%> has <%= cart.line_items.count%> goods -- total price: <%= number_to_currency(cart.total_price) %></td>
     <td><%= link_to 'Show', cart %></td>
     <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
     <td><%= link_to 'Destroy', cart, :confirm => 'Are you sure?', :method => :delete %></td>
