@@ -143,3 +143,14 @@ color: #44a;
        font-weight: bold;
        margin-right: 2em;
 }
+
+#store .entry  .form{
+display: inline
+}
+#store .entry  .form div{
+display: inline
+} 
+#Goods_in_cart {
+font-size: 2em;
+color: red
+}

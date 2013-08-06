@@ -8,12 +8,18 @@
   <%= csrf_meta_tag %>
 </head>
 <body id="store">
+
+  <div id="visit_count" style="font-size: 2em; float: right">
+    <%=session[:count] if session[:count] > 5%>
+  </div>
+
   <div id="banner">
     <%= image_tag("logo.png")%>
     <%= @page_title || "Pragmatic Bookshelf" %>
   </div>
   <div id="columns">
     <div id="side">
+      <%= link_to 'Product List page', root_path%></br>
       <a href="http://www....">Home</a><br />
       <a href="http://www....">Question</a><br />
       <a href="http://www....">News</a><br />

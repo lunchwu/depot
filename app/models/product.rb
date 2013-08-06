@@ -6,4 +6,16 @@ class Product < ActiveRecord::Base
 		:with => /\.(jpg|png|gif)/,
 		:message => "You must input a correct file type, like jpg."
 	}
+	has_many :line_items
+	before_destroy :ensure_not_referenced_by_any_line_item
+
+	private
+	def ensure_not_referenced_by_any_line_item
+		if line_items.empty?
+			return true
+		else
+			errors.add(:base, "Line items presence")
+			return false
+		end
+	end
 end

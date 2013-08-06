@@ -1,0 +1,24 @@
+<h1>Listing carts</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @carts.each_with_index do |cart,m| %>
+  <div id="Goods_in_cart">
+  Cart <%=m%> has <%= cart.line_items.count%> goods
+  </div>
+  <tr>
+    <td><%= link_to 'Show', cart %></td>
+    <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
+    <td><%= link_to 'Destroy', cart, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cart', new_cart_path %>
