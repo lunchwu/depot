@@ -3,7 +3,11 @@ class CartsController < ApplicationController
   # GET /carts.xml
   def index
     @carts = Cart.all
-
+    puts "===============#{session}"
+    puts "===============#{params}"
+    if params[:id]
+    	session[:cart_id] = params[:id]
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @carts }

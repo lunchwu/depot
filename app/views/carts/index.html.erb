@@ -1,5 +1,8 @@
 <h1>Listing carts</h1>
 
+<% if session[:cart_id]%>
+<h2>Current Cart is Cart<%= session[:cart_id]%></h2>
+<% end %>
 <table>
   <tr>
     <th></th>
@@ -10,6 +13,11 @@
 <% @carts.each do |cart| %>
   <tr>
     <td>Cart <%=cart.id%> has <%= cart.line_items.count%> goods -- total price: <%= number_to_currency(cart.total_price) %></td>
+    <td>
+    <%= link_to 'Select this carts',
+    options = {:controller=>"carts", :action=>"index", :id=>cart},
+    html_options={:confirm => "Are you sure?"}%>
+    </td>
     <td><%= link_to 'Show', cart %></td>
     <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
     <td><%= link_to 'Destroy', cart, :confirm => 'Are you sure?', :method => :delete %></td>

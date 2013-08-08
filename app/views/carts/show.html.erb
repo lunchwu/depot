@@ -9,15 +9,19 @@
     <td><%= item.quantity %> &times;</td>
     <td class="item_price"><%= item.product.title %></td>
     <td><%= item.product.price %></td>
+    <td><%= link_to "delete", options={:controller=>"line_items", :id=>item, :action=>"destroy"},
+    html_options = {:confirm=>"Are you sure to remove the item from Cart?",
+                    :method=>"delete"}%></td>
   </tr>
   <% end %>
   
   <tr class="total_line">
-    <td colspan="2">Total</td>
+    <td colspan="3">Total</td>
     <td class="total_cell"><%=number_to_currency(@cart.total_price)%></td>
   </tr>
 </table>
 
 <%= link_to 'Empty Cart', @cart, :confirm => "Are you sure?", :method => :delete%>
+<%= button_to 'Empty Cart', options = {:controller=>"carts", :action=>"destroy", :confirm => "Are you sure"}, html_options={:confirm => "Are you sure?", :method => :delete}%>
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
 <%= link_to 'Back', carts_path %>

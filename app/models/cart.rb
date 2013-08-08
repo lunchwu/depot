@@ -5,6 +5,7 @@ class Cart < ActiveRecord::Base
 		if current_item
 			current_item.quantity += 1
 		else
+			# cart_id may be set in the following "build" function
 			current_item = line_items.build(:product_id => product_id)
 		end
 		current_item
