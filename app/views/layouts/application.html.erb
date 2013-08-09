@@ -20,6 +20,12 @@
   </div>
   <div id="columns">
     <div id="side">
+      <div id="cart">
+        <%= render @cart %>
+      </div>
+      <br />
+      <br />
+
       <%= link_to 'Product List page', root_path%></br>
       <%= link_to 'Carts list page', carts_path%></br>
       <%= link_to 'Line Item list page', line_items_path%></br>

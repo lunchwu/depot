@@ -1,0 +1,11 @@
+<div class="cart_title">Cart <%=cart.id%></div>
+<table>
+  <%= render(cart.line_items) %>
+
+  <tr class="total_line">
+    <td colspan="2" style="text-align: center">Total</td>
+    <td class="total_cell"><%=number_to_currency(cart.total_price)%></td>
+  </tr>
+</table>
+
+<%= link_to 'Empty Cart', cart, :confirm => "Are you sure?", :method => :delete%>

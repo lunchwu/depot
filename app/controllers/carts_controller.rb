@@ -3,8 +3,7 @@ class CartsController < ApplicationController
   # GET /carts.xml
   def index
     @carts = Cart.all
-    puts "===============#{session}"
-    puts "===============#{params}"
+    @cart = current_cart
     if params[:id]
     	session[:cart_id] = params[:id]
     end
@@ -82,12 +81,13 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.xml
   def destroy
+    #@cart = current_cart
     @cart = current_cart
     @cart.destroy
     session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to(root_url, :notice=>"Your cart has been destroyed") }
+      format.html { redirect_to(carts_url, :notice=>"Your cart has been destroyed") }
       format.xml  { head :ok }
     end
   end
