@@ -9,6 +9,7 @@
     <td><%= item.quantity %> &times;</td>
     <td class="item_price"><%= item.product.title %></td>
     <td><%= item.product.price %></td>
+    <td> <%=link_to "delete for short", line_item_path(item), :method=>"delete"%></td>
     <td><%= link_to "delete", options={:controller=>"line_items", :id=>item, :action=>"destroy"},
     html_options = {:confirm=>"Are you sure to remove the item from Cart?",
                     :method=>"delete"}%></td>

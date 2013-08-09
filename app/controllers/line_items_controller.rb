@@ -76,6 +76,11 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.xml
   def destroy
+    # The ":id" is the default parameter's name.
+    # If we use REST, line_item(item) <=> line_item(:id=>item)
+    # If we use REST and change the param, we must do at the both side
+    # line_item(:lineid=>item) and LineItem.find(params[:lineid])
+
     @line_item = LineItem.find(params[:id])
     @line_item.destroy
 
