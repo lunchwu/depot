@@ -49,8 +49,9 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
+	@current_item = @line_item
         format.html { redirect_to(root_url, :notice => 'Line item was successfully created.') }
-	format.js {@current_item = @line_item}
+	format.js
         format.xml  { render :xml => @line_item, :status => :created, :location => @line_item }
       else
         format.html { render :action => "new" }
