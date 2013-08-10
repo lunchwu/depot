@@ -20,13 +20,9 @@
   </div>
   <div id="columns">
     <div id="side">
-      <div id="cart"
-      <% if @cart.line_items.empty?%>
-      	style="display: none"
-      <%end%>
-      >
+      <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do%>
         <%= render @cart %>
-      </div>
+      <% end %>
 
       <%= link_to 'Product List page', root_path%></br>
       <%= link_to 'Carts list page', carts_path%></br>
