@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
   # GET /products/new.xml
   def new
     @product = Product.new
+    @cart = current_cart
 
     respond_to do |format|
       format.html # new.html.erb

@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   # GET /orders.xml
   def index
     @orders = Order.all
+    @cart = current_cart
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.xml
   def show
     @order = Order.find(params[:id])
+    @cart = current_cart
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,6 +26,11 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.xml
   def new
+    @cart = current_cart
+    if @cart.line_items.empty?
+    	redirect_to root_url, :notice=>"Your cart is empty!"
+	return
+    end
     @order = Order.new
 
     respond_to do |format|
@@ -41,10 +48,14 @@ class OrdersController < ApplicationController
   # POST /orders.xml
   def create
     @order = Order.new(params[:order])
+    @cart = current_cart
+    @order.add_line_items_from_cart(@cart)
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
+	@cart.destroy
+	session[:cart_id] = nil
+        format.html { redirect_to(root_url, :notice => 'Thanks for Your Order.') }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
         format.html { render :action => "new" }
