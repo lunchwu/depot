@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
 		:message => "You must input a correct file type, like jpg."
 	}
 	has_many :line_items
+	has_many :orders, :through => :line_items
 	before_destroy :ensure_not_referenced_by_any_line_item
 
 	private
